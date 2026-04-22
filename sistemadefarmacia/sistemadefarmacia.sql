@@ -137,7 +137,7 @@ NULL,
 'Santos',
 'SP',
 '11015000'
-);
+); 
 
 --inserindo dado da tabela farmaceutico (FK foi referenciada)
 INSERT INTO farmaceutico(
@@ -161,4 +161,63 @@ VALUES(
     50,
     19.90,
     '11111111000111'
-)
+);
+--listando os dados de duas colunas
+SELECT nomefarmacia, cidade
+FROM farmacia;
+
+--listando com filtro
+
+SELECT *
+FROM farmacia
+WHERE cidade = 'São Paulo'
+
+--DEletar um dado da tabela
+DELETE FROM farmacia
+WHERE cnpj = '12345678000199'
+
+--ai ai
+DROP DATABASE sistemadefarmacia
+
+--listar com comparação
+SELECT *
+FROM produto
+WHERE quantproduto > 20;
+
+SELECT *
+FROM farmacia
+WHERE cidade = 'São Paulo'
+AND bairro = 'Jardins';
+
+SELECT *
+FROM farmacia
+WHERE cidade = 'São Paulo'
+OR cidade = 'Campinas;'
+
+SELECT *
+FROM produto
+WHERE valorproduto BETWEEN 10 and 50;
+
+-- Concedendo permissão - apenas de leitura
+GRANT SELECT
+ON sistemadefarmacia. *
+TO 'usuario_farmacia'@'localhost';
+ 
+-- Concedendo permissões específicas
+GRANT SELECT, INSERT
+ON sistemadefarmacia. *
+TO 'usuario_farmacia'@'localhost';
+
+
+-- Revogando permissões de um usuário
+
+REVOKE INSERT 
+
+ON sistemadefarmacia. *
+
+FROM 'usuario_farmacia'@'localhost';
+
+-- revogando todas as permissoes do usuario
+REVOKE ALL PRIVELEGES
+ON sistemadefarmacia.*
+FROM 'usuario_farmacia'@'localhost';
